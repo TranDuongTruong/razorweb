@@ -1,0 +1,65 @@
+@page
+@model razor_ef.Pages_Blog.IndexModel
+
+@{
+    ViewData["Title"] = "Các bài viết";
+    var i = 0;
+}
+
+<h1>Danh sách bài viết</h1>
+<form method="get" asp-page="./Index">
+    <label>Tìm kiếm</label>
+    using Humanizer;
+    <input name="SearchString" value="" />
+    <button type="submit">Search</button>
+</form>
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].PublishDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Article)
+        {
+            <tr>
+                <td>
+                    @(++i)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@{
+    var pagingmodel = new XTL.Helpers.PagingModel()
+            {
+                currentpage = Model.currentpage,
+                countpages = Model.countpages,
+                generateUrl = (int? p) => Url.Page("/Blog/Index", new { p = p })
+            };
+}
+<partial name="_PagingXTL" model="@pagingmodel" />

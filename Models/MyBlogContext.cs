@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using razor08.efcore.Models;
 
-namespace razor08.efcore.Data
+namespace razor08.efcore
 {
     public class MyBlogContext : DbContext
     {

@@ -12,9 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using razor08.efcore.Data;
 
-namespace razor01.basic
+namespace razor08.efcore
 {
     public class Startup
     {
@@ -34,6 +33,9 @@ namespace razor01.basic
                 string connectString = Configuration.GetConnectionString("MyBlogContext");
                 options.UseSqlServer(connectString);
             });
+
+            services.AddDbContext<MyBlogContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("MyBlogContext")));
 
         }
 
@@ -65,3 +67,9 @@ namespace razor01.basic
         }
     }
 }
+
+/*
+CRUD
+dotnet aspnet-codegenerator razorpage -m razor08.efcore.Article -dc razor08.efcore.Model.MyBlogContext -outDir Pages/Blog -udl --referenceScriptLibraries
+
+*/

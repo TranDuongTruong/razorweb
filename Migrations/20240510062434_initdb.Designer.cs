@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using razor08.efcore.Data;
+using razor08.efcore;
 
 #nullable disable
 
@@ -25,7 +25,7 @@ namespace razor_ef.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("razor08.efcore.Models.Article", b =>
+            modelBuilder.Entity("razor08.efcore.Article", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()

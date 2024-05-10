@@ -2,7 +2,7 @@
 using Bogus;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
-using razor08.efcore.Models;
+using razor08.efcore;
 
 #nullable disable
 
